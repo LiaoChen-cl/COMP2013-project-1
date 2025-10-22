@@ -3,6 +3,7 @@ import QuantityCounter from "./QuantityCounter";
 export default function ProductCard({
   productName,
   image,
+  brand, 
   productQuantity,
   handleOnChangePrice,
   handleAddToQuantity,
@@ -11,8 +12,10 @@ export default function ProductCard({
 }) {
   return (
     <div className="ProductCard">
-      <img src={image} alt={productName} height="100px" />
       <h3>{productName}</h3>
+      <img src={image} alt={productName} height="100px" />
+      <p>{brand}</p>
+
 
       <QuantityCounter
         quantity={productQuantity?.quantity || 0}

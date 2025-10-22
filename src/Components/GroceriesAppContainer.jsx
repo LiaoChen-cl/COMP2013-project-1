@@ -2,6 +2,8 @@ import { useState } from "react";
 import products from "../data/products";
 import ProductsContainer from "./ProductsContainer";
 import CartContainer from "./CartContainer";
+import NavBar from "./NavBar";
+
 
 export default function GroceriesAppContainer() {
   const [productQuantity, setProductQuantity] = useState(
@@ -61,13 +63,18 @@ export default function GroceriesAppContainer() {
   const handleEmptyCart = () => setCart([]);
 
   return (
+    <>
+      {/* 1. NavBar 放在最外层 Fragment 内 */}
+      <NavBar cartCount={cart.length} username="Liao" />
     <div className="GroceriesAppContainer">
-  <div className="MainContent">  {/* 新增 flex 容器 */}
-    <ProductsContainer
-      data={products}
-      productQuantity={productQuantity}
-      handleOnChangePrice={handleOnChangePrice}
-      handleAddToQuantity={handleAddToQuantity}
+      
+
+      <div className="MainContent">  {/* 新增 flex 容器 */}
+        <ProductsContainer
+          data={products}
+          productQuantity={productQuantity}
+          handleOnChangePrice={handleOnChangePrice}
+          handleAddToQuantity={handleAddToQuantity}
       handleRemoveQuantity={handleRemoveQuantity}
       handleAddToCart={handleAddToCart}
     />
@@ -75,8 +82,16 @@ export default function GroceriesAppContainer() {
     <CartContainer
       cart={cart}
       handleRemoveFromCart={handleRemoveFromCart}
-      handleAddToQuantity={handleAddToQuantity}
-      handleRemoveQuantity={handleRemoveQuantity}
+      handleAddToQuantity={(id) => 
+        setCart(prev => 
+          prev.map(item => item.id === id ? { ...item, quantity: item.quantity + 1 } : item)
+        )
+      }
+      handleRemoveQuantity={(id) => 
+        setCart(prev => 
+          prev.map(item => item.id === id ? { ...item, quantity: Math.max(item.quantity - 1, 0) } : item)
+        )
+      }
       handleEmptyCart={handleEmptyCart}
     />
   </div>
@@ -91,7 +106,8 @@ export default function GroceriesAppContainer() {
       <button>Buy</button>
     </div>
   )}
-</div>
+  </div>
+ </>
 
   );
 }
