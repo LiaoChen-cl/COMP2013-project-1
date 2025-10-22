@@ -62,35 +62,36 @@ export default function GroceriesAppContainer() {
 
   return (
     <div className="GroceriesAppContainer">
-      <ProductsContainer
-        data={products}
-        productQuantity={productQuantity}
-        handleOnChangePrice={handleOnChangePrice}
-        handleAddToQuantity={handleAddToQuantity}
-        handleRemoveQuantity={handleRemoveQuantity}
-        handleAddToCart={handleAddToCart}
-      />
+  <div className="MainContent">  {/* 新增 flex 容器 */}
+    <ProductsContainer
+      data={products}
+      productQuantity={productQuantity}
+      handleOnChangePrice={handleOnChangePrice}
+      handleAddToQuantity={handleAddToQuantity}
+      handleRemoveQuantity={handleRemoveQuantity}
+      handleAddToCart={handleAddToCart}
+    />
 
-      <h2>Shopping Cart</h2>
-      <CartContainer
-        cart={cart}
-        handleRemoveFromCart={handleRemoveFromCart}
-        handleAddToQuantity={handleAddToQuantity}
-        handleRemoveQuantity={handleRemoveQuantity}
-        handleEmptyCart={handleEmptyCart}
-      />
+    <CartContainer
+      cart={cart}
+      handleRemoveFromCart={handleRemoveFromCart}
+      handleAddToQuantity={handleAddToQuantity}
+      handleRemoveQuantity={handleRemoveQuantity}
+      handleEmptyCart={handleEmptyCart}
+    />
+  </div>
 
-
-      {cart.length > 0 && (
-        <div className="cart-summary">
-          <p>
-            Total Price: $
-            {cart.reduce((sum, item) => sum + item.quantity * item.currentPrice, 0).toFixed(2)}
-          </p>
-          <button onClick={handleEmptyCart}>Empty Cart</button>
-          <button>Buy</button>
-        </div>
-      )}
+  {cart.length > 0 && (
+    <div className="cart-summary">
+      <p>
+        Total Price: $
+        {cart.reduce((sum, item) => sum + item.quantity * item.currentPrice, 0).toFixed(2)}
+      </p>
+      <button onClick={handleEmptyCart}>Empty Cart</button>
+      <button>Buy</button>
     </div>
+  )}
+</div>
+
   );
 }
