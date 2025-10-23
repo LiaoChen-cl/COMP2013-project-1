@@ -1,3 +1,4 @@
+/* Root layout - centers the app and constrains width for desktop */
 #root {
   width: 100%;
   max-width: 1200px;
@@ -7,6 +8,7 @@
   text-align: center;
 }
 
+/* Top navigation bar: greeting, title and cart icon */
 .NavBar {
   background-color: rgb(76, 43, 226);
   display: flex;
@@ -17,6 +19,7 @@
   height: 100%;
 }
 
+/* Helper layout divisions inside NavBar */
 .NavDiv {
   width: 33%;
 }
@@ -37,6 +40,7 @@
   padding: 0 10px;
 }
 
+/* High-level app container (flex layout for main content) */
 .GroceriesApp-Container {
   width: 100%;
   display: flex;
@@ -45,10 +49,11 @@
   border: 1px solid white;
   /* max-width: 800px; */
   /* border: 1px solid white; */
-  /* max-width: 800px; */
-  /* border: 1px solid white; */
+
 }
 
+
+/* MainContent: left (products) and right (cart) columns */
 .MainContent {
   display: flex;
   gap: 20px;
@@ -56,54 +61,67 @@
   align-items: flex-start;
 }
 
+/* Cart column: fixed width, padding for spacing */
 .CartContainer {
-  flex: 0 0 25%; /* 固定宽度 */
-  border: 1px solid white;
+  flex: 0 0 25%; 
+  border: none;
   padding: 10px;
 }
 
+/* Products column: use remaining space, wrap cards */
 .ProductsContainer {
-  flex: 1; /* 占满剩余宽度 */
+  flex: 1; 
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
   padding: 5px;
-  border-top: 1px solid white; /* 可选，只保留上边框 */
+  border: none;
 }
 
-
+/* Individual cart card styling (row layout) */
 .CartCard {
   display: flex;
-  justify-content: space-between; /* 左右分开 */
-  align-items: center;            /* 整体垂直居中 */
+  align-items: center;             /* vertically center content */
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 2px wheat solid;
   border-radius: 8px;
   margin-bottom: 10px;
   background-color: rgb(43, 48, 54);
-  gap: 20px;
+  height: 150px;
+  min-height: 150px;        /* keep consistent height */
+  flex-shrink: 0; 
+  gap: 20px;                   /* spacing between columns */
+  min-height: 150px;           /* prevent shrinking */
 }
 
+/* Left side of CartCard: image, name, quantity controls stacked vertically */
 .left-side {
+  width: 150px;  /* fixed width */
   display: flex;
-  flex-direction: column;    /* 图片、名字、数量、价格垂直排列 */
-  align-items: center;       /* 水平居中 */
-  justify-content: center;   /* 垂直居中 */
-  gap: 5px;
+  flex-direction: column;    
+  align-items: center;       
+  justify-content: center;   
+  gap: 10px;
+  margin-right: 20px; 
 }
 
+/* Small typography adjustments for left-side text */
 .left-side h3,
 .left-side p {
   margin: 0;
   font-size: 14px;
 }
 
+/* Right side of CartCard: total price and remove button aligned to end */
 .right-side {
+  width: 100px;  
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: center;   /* 垂直居中 */
-  gap: 5px;
+  justify-content: center;   
+  gap: 2px;
+  height: 100px;  
+  margin-right: 10px; 
 }
 
 .right-side button {
@@ -112,6 +130,7 @@
   cursor: pointer;
 }
 
+/* CartCardInfo: helper container for inline info (unused/optional) */
 .CartCardInfo {
   display: flex;
   justify-content: space-around;
@@ -120,16 +139,18 @@
   width: 50%;
 }
 
+/* Products container alternate rules for layout and sizing */
 .ProductsContainer {
   width: 75%;
   max-width: 800px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  border: 0.1px solid white;
+  border: none;
   /* border: 1px solid white; */
 }
 
+/* Product card: grid cell for each product */
 .ProductCard {
   width: 20%;
   border: 2px wheat solid;
@@ -138,12 +159,14 @@
   padding: 5px;
 }
 
+/* Layout inside product card for quantity and controls */
 .ProductQuantityDiv {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+/* Small circular buttons used for quantity controls */
 .QuantityBtn {
   display: flex;
   justify-content: center;
@@ -159,11 +182,13 @@
   background-color: rgb(76, 43, 226);
 }
 
+/* Generic img styling used across components */
 img {
   height: 50px;
   border-radius: 5px;
 }
 
+/* Counter container used by QuantityCounter component */
 .counter-container {
    border: 1px solid white;
   /* border: 1px solid white; */
@@ -175,6 +200,7 @@ img {
   margin: 5px auto;
 }
 
+/* Small buttons inside the counter */
 .counter-button {
   width: 15px;
   height: 15px;
@@ -183,21 +209,40 @@ img {
   cursor: pointer;
 }
 
+/* Buttons area for cart list actions (Empty / Checkout) */
 .CartListBtns {
   display: flex;
   justify-content: space-around;
-  gap: 10px; /* 两个按钮之间留点间距 */
+  gap: 10px; 
 }
 
 .CartListBtns button {
-  width: 50%; /* 所有按钮宽度相同 */
-  padding: 20px; /* 调整按钮高度一致 */
+  width: 50%; 
+  padding: 20px; 
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
+/* cart-buttons: consistent sizing and spacing for action buttons */
+.cart-buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px; 
+}
+
+.cart-buttons button {
+  width: 50%; 
+  height: 60px; 
+  padding: 10px; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Specific colors for remove and checkout buttons */
 .RemoveButton {
   background-color: rgb(190, 0, 0);
 }
@@ -206,19 +251,36 @@ img {
   background-color: green;
 }
 
+/* Cart icon wrapper: relative for badge positioning */
+.cart-icon {
+  position: relative; 
+  font-size: 50px;    
+}
+
 
 .cart-icon {
-  position: relative; /* 相对定位 */
-  font-size: 50px;    /* 🛒变大 */
+  position: relative;
+  display: inline-block;
 }
 
-.red-dot {
-  position: absolute;
-  top: 5px;          /* 可以微调 */
-  right: 5px;        /* 可以微调 */
-  width: 15px;
-  height: 15px;
-  background-color: red;
-  border-radius: 50%;
-  border: 1px solid white;
+.cart-icon img {
+  vertical-align: middle;
 }
+
+
+/* Remove button in CartCard (larger, prominent) */
+.remove-btn {
+  background-color: rgb(150, 0, 0);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 35px; 
+  height: 40px;       
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+
+
