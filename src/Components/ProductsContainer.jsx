@@ -15,7 +15,10 @@ export default function ProductsContainer({
   handleOnChangePrice,
   handleAddToQuantity,
   handleRemoveQuantity,
-  handleAddToCart
+  handleAddToCart,
+  // ***新增部分***
+  handleDelete,
+  handleEdit
 }) {
   return (
     <div className="ProductsContainer">
@@ -30,6 +33,10 @@ export default function ProductsContainer({
           handleAddToQuantity={handleAddToQuantity}
           handleRemoveQuantity={handleRemoveQuantity}
           handleAddToCart={handleAddToCart}
+
+          // ***新增部分***
+          onDelete={handleDelete}
+          onEdit={handleEdit}
         />
       ))}
     </div>

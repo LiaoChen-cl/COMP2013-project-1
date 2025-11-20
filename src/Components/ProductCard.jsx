@@ -20,8 +20,15 @@ export default function ProductCard({
   handleOnChangePrice,
   handleAddToQuantity,
   handleRemoveQuantity,
-  handleAddToCart
+  handleAddToCart,
+  // ***新增部分***
+  onDelete,
+  onEdit
 }) {
+
+  // 给 productQuantity 设置默认对象，避免 undefined
+  const pq = productQuantity || { id: null, quantity: 0, currentPrice: 0 };
+
   return (
     <div className="ProductCard">
          {/* Product title */}
@@ -48,6 +55,11 @@ export default function ProductCard({
          {/* Add to cart button: passes the productQuantity object (id, quantity, currentPrice).
           Caller should handle zero-quantity guard. */}
       <button onClick={() => handleAddToCart(productQuantity)}>Add to Cart</button>
+
+
+      {/* ***新增部分：编辑/删除按钮*** */}
+      {onEdit && <button onClick={() => onEdit(productQuantity.id)}>Edit</button>}
+      {onDelete && <button onClick={() => onDelete(productQuantity.id)}>Delete</button>}
     </div>
   );
 }
